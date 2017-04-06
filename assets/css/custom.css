@@ -185,3 +185,20 @@ button.send:hover {
 #who-we-are {
   text-align: center;
 }
+
+.splitmap {
+  overflow: hidden;
+}
+
+.splitmap iframe {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .splitmap iframe {
+    width: 50%;
+    float: left;
+  }
+}
