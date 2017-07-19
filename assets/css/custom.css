@@ -229,3 +229,7 @@ button.send:hover {
 .clear::after {
   clear: both;
 }
+
+.member .text-overlay .info .social li a:hover .icon-info-circled {
+  color: #506a85;
+}
