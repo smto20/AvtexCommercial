@@ -233,3 +233,7 @@ button.send:hover {
 .member .text-overlay .info .social li a:hover .icon-info-circled {
   color: #506a85;
 }
+
+.nav > li.active a {
+  color: #1ABB9C;
+}
