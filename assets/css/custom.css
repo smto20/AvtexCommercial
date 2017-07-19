@@ -207,3 +207,25 @@ button.send:hover {
     float: left;
   }
 }
+
+.portfolio-image {
+  max-width: 200px;
+  margin: 0 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-image {
+    float: right;
+    margin: 0 0 1rem 1rem;
+  }
+}
+
+.clear::before,
+.clear::after {
+  display: table;
+  content: '';
+}
+
+.clear::after {
+  clear: both;
+}
