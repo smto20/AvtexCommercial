@@ -209,7 +209,7 @@ button.send:hover {
 }
 
 .portfolio-image {
-  max-width: 200px;
+  max-width: 150px;
   margin: 0 0 1rem;
 }
 
@@ -217,6 +217,12 @@ button.send:hover {
   .portfolio-image {
     float: right;
     margin: 0 0 1rem 1rem;
+  }
+}
+
+@media (min-width: 980px) {
+  .portfolio-image {
+    margin-right: 25%;
   }
 }
 
