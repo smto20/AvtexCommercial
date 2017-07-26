@@ -250,3 +250,15 @@ button.send:hover {
 .nav > li.active a {
   color: #1ABB9C;
 }
+
+#owl-clients .item {
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+#owl-clients .item img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 48px;
+}
