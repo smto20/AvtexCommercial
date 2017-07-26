@@ -208,32 +208,39 @@ button.send:hover {
   }
 }
 
-.portfolio-image {
+.portfolio-images {
   max-width: 150px;
-  margin: 0 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-images {
+    float: right;
+  }
+}
+
+@media (min-width: 980px) {
+  .portfolio-images {
+    margin-right: 25%;
+  }
+}
+
+.portfolio-image {
+  display: block;
+  max-width: 100%;
+  max-height: 48px;
+  margin: 0 auto 1rem;
 }
 
 @media (min-width: 768px) {
   .portfolio-image {
-    float: right;
-    margin: 0 0 1rem 1rem;
+
   }
 }
 
 @media (min-width: 980px) {
   .portfolio-image {
-    margin-right: 25%;
+
   }
-}
-
-.clear::before,
-.clear::after {
-  display: table;
-  content: '';
-}
-
-.clear::after {
-  clear: both;
 }
 
 .member .text-overlay .info .social li a:hover .icon-info-circled {
