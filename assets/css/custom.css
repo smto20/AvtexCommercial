@@ -262,3 +262,15 @@ button.send:hover {
   height: auto;
   max-height: 48px;
 }
+
+.portfolio-imageset {
+
+}
+
+.portfolio-imageset img {
+  display: inline-block;
+  max-width: 100px;
+  max-height: 100px;
+  margin: 10px;
+  vertical-align: middle;
+}
