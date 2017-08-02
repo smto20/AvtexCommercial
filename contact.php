@@ -1,20 +1,21 @@
 <?php
 	// ========== Enter your email address here ========== //
 	$to = "info@avtexcommercial.com";
-	
+
 	// Clean up the input values
 	foreach($_POST as $key => $value) {
 		if(ini_get('magic_quotes_gpc'))
 			$_POST[$key] = stripslashes($_POST[$key]);
-		
+
 		$_POST[$key] = htmlspecialchars(strip_tags($_POST[$key]));
 	}
-	
+
 	// Assign the input values to variables for easy reference
 	$name = $_POST["name"];
-	$email = $_POST["subject"];
+	$email = $_POST["email"];
 	$message = $_POST["message"];
-	
+	$referrer = $_POST['referrer'];
+
 	// Check input values for errors
 	$errors = array();
 	if(strlen($name) < 2) {
@@ -36,7 +37,7 @@
 			$errors[] = "Message requires at least 10 characters!";
 		}
 	}
-	
+
 	// Output error message(s)
 	if($errors) {
 		$errortext = "";
@@ -46,7 +47,7 @@
 		die("<ul class='errors arrowed'>". $errortext ."</ul>
 			<a href='javascript:history.go(0)' class='btn'><i class='icon-left-1'></i> Back</a>");
 	}
-	
+
 	// Send the email
 	//$subject!="Website Inquiry"){
 	//	$subject = "Contact Form: $subject";
@@ -55,13 +56,16 @@
 	//	$subject = "Contact Form: $name";
 	//}
 	$message = "$message";
+	if ($referrer) {
+		$message = "Referrer: " . $referrer . "\n" . $message;
+	}
 	$headers = "From: ".$name." <".$email.">" . "\r\n" . "Reply-To: " . $email;
-	
-	mail($to, $subject, $message, $headers);
-	
+
+	mail($to, "Avtex Contact Form Submission", $message, $headers);
+
 	// Output success message
 	die("<p class='success'>Thank you! – Your message has been successfully sent!</p>");
-	
+
 	// Check if email is valid
 	function validEmail($email) {
 		$isValid = true;
