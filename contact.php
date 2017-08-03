@@ -15,57 +15,63 @@
 	$email = $_POST["email"];
 	$message = $_POST["message"];
 	$referrer = $_POST['referrer'];
+	$beepboop = $_POST['beepboop'];
 
-	// Check input values for errors
-	$errors = array();
-	if(strlen($name) < 2) {
-		if(!$name) {
-			$errors[] = "Please enter your name!";
-		} else {
-			$errors[] = "Name requires at least 2 characters!";
+	if (!$beepboop) {
+
+		// Check input values for errors
+		$errors = array();
+		if(strlen($name) < 2) {
+			if(!$name) {
+				$errors[] = "Please enter your name!";
+			} else {
+				$errors[] = "Name requires at least 2 characters!";
+			}
 		}
-	}
-	if(!$email) {
-		$errors[] = "Please enter your email!";
-	} else if(!validEmail($email)) {
-		$errors[] = "Please enter a valid email!";
-	}
-	if(strlen($message) < 10) {
-		if(!$message) {
-			$errors[] = "Please enter a message!";
-		} else {
-			$errors[] = "Message requires at least 10 characters!";
+		if(!$email) {
+			$errors[] = "Please enter your email!";
+		} else if(!validEmail($email)) {
+			$errors[] = "Please enter a valid email!";
 		}
-	}
-
-	// Output error message(s)
-	if($errors) {
-		$errortext = "";
-		foreach($errors as $error) {
-			$errortext .= "<li>".$error."</li>";
+		if(strlen($message) < 10) {
+			if(!$message) {
+				$errors[] = "Please enter a message!";
+			} else {
+				$errors[] = "Message requires at least 10 characters!";
+			}
 		}
-		die("<ul class='errors arrowed'>". $errortext ."</ul>
-			<a href='javascript:history.go(0)' class='btn'><i class='icon-left-1'></i> Back</a>");
+
+		// Output error message(s)
+		if($errors) {
+			$errortext = "";
+			foreach($errors as $error) {
+				$errortext .= "<li>".$error."</li>";
+			}
+			die("<ul class='errors arrowed'>". $errortext ."</ul>
+				<a href='javascript:history.go(0)' class='btn'><i class='icon-left-1'></i> Back</a>");
+		}
+
+		// Send the email
+		//$subject!="Website Inquiry"){
+		//	$subject = "Contact Form: $subject";
+		//}
+		//else {
+		//	$subject = "Contact Form: $name";
+		//}
+		$message = "$message";
+		if ($referrer) {
+			$message = "Referrer: " . $referrer . "\n" . $message;
+		}
+		$headers = "From: ".$name." <".$email.">" . "\r\n" . "Reply-To: " . $email;
+
+		mail($to, "Avtex Contact Form Submission", $message, $headers);
+
+		// Output success message
+		die("<p class='success'>Thank you! – Your message has been successfully sent!</p>");
+
+	} else {
+		die("<p class='success'>01001110 01101001 01100011 01100101 00100000 01110100 01110010 01111001 00100000 01110010 01101111 01100010 01101111 01110100 00100001</p>");
 	}
-
-	// Send the email
-	//$subject!="Website Inquiry"){
-	//	$subject = "Contact Form: $subject";
-	//}
-	//else {
-	//	$subject = "Contact Form: $name";
-	//}
-	$message = "$message";
-	if ($referrer) {
-		$message = "Referrer: " . $referrer . "\n" . $message;
-	}
-	$headers = "From: ".$name." <".$email.">" . "\r\n" . "Reply-To: " . $email;
-
-	mail($to, "Avtex Contact Form Submission", $message, $headers);
-
-	// Output success message
-	die("<p class='success'>Thank you! – Your message has been successfully sent!</p>");
-
 	// Check if email is valid
 	function validEmail($email) {
 		$isValid = true;
